@@ -11,14 +11,17 @@ contract FundMe {
     address[] public funders;
     mapping (address => uint256) public  addressToAmountFunded;
     address public immutable i_owner;
+    AggregatorV3Interface public priceFeed;
 
-    constructor() {
+
+    constructor(address priceFeedAddress) {
         i_owner = msg.sender;
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     function fund() public payable {
         // set the ether value to greater than 1 Ether
-        require( msg.value.getConversionRate() >= MINIMUM_USD,"Didn't send enough ether");
+        require( msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,"Didn't send enough ether");
         funders.push(msg.sender);
         addressToAmountFunded[msg.sender] = msg.value;
 

@@ -25,7 +25,9 @@ const config: HardhatUserConfig = {
             chainId: 31337,
         },
     },
-    solidity: "0.8.19",
+    solidity: {
+        compilers: [{ version: "0.8.19" }, { version: "0.6.6" }],
+    },
     etherscan: {
         apiKey: {
             sepolia: ETHERSCAN_API_KEY,
