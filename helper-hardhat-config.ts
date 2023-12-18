@@ -1,7 +1,7 @@
 export interface networkConfigItem {
     ethUsdPriceFeed?: string;
-    blockConfirmations: number;
-    chainId: number;
+    blockConfirmations?: number;
+    chainId?: number;
 }
 
 export interface networkConfigInfo {
@@ -9,6 +9,8 @@ export interface networkConfigInfo {
 }
 
 export const networkConfig: networkConfigInfo = {
+    localhost: {},
+    hardhat: {},
     sepolia: {
         ethUsdPriceFeed: "0x694AA1769357215DE4FAC081bf1f309aDC325306",
         chainId: 11155111,

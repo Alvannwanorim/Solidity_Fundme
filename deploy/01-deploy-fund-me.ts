@@ -8,12 +8,10 @@ const FundMe: DeployFunction = async function ({
     deployments,
     network,
 }: HardhatRuntimeEnvironment) {
-    console.log("Hi");
-
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
     const chainId: number = network.config.chainId!;
-
+    log(network.name);
     let ethUsdPriceFeedAddress;
     if (developmentChains.includes(network.name)) {
         const ethUsdAggregator = await deployments.get("MockV3Aggregator");
